@@ -26,16 +26,11 @@ export class ProductsService {
         }
     ];
 
-    create(product: Product) {
-        try {
-            this.products.push(product);
-        } catch (e) {
-            console.error(`${__dirname}: ${e}`);
-        }
-      }
-
     findAll(productQuerytDto): {products: Product[], suggestedProducts: Product[]} | NotFoundException {
 
+        const firstIndex = 0;
+        const secondIndex = 2;
+        
         const { filter } =  productQuerytDto;
         const products: Product[] = filter ?
             this.products.filter(product => product.name.toLowerCase().includes(filter.toLowerCase())) 
@@ -46,7 +41,7 @@ export class ProductsService {
         }
 
         const suggestedProducts: Product[] = filter ?
-            this.products.filter(product => (product.category === products[0].category && product.id !== products[0].id)).slice(0, 2) 
+            this.products.filter(product => (product.category === products[firstIndex].category && product.id !== products[firstIndex].id)).slice(firstIndex, secondIndex) 
             : [];
 
         return {products, suggestedProducts};

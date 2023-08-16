@@ -13,9 +13,4 @@ export class ProductsController {
       return this.productsService.findAll(productQuerytDto);
     }
 
-    // @Post()
-    // async create(@Body() createProductDto: CreateProductDto) {
-    //     this.productsService.create(createProductDto);
-    //   }
-  
 }
